@@ -1,5 +1,6 @@
 {
     "name": "nosto/nosto-magento-extension",
+    "type": "magento-module",
     "description": "Nosto Magento extension",
     "license": "OSL v3.0",
     "repositories": [
