@@ -171,7 +171,7 @@ class Nosto_Tagging_Model_Meta_Product extends Nosto_Tagging_Model_Base implemen
         $priceHelper = Mage::helper('nosto_tagging/price');
 
         $this->_url = $this->buildUrl($product, $store);
-        $this->_productId = $product->getId();
+        $this->_productId = $product->getSku(); //$product->getId();
         $this->_name = $product->getName();
         $this->_imageUrl = $this->buildImageUrl($product, $store);
         $this->_price = $priceHelper->convertToDefaultCurrency($priceHelper->getProductFinalPriceInclTax($product), $store);

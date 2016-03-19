@@ -252,8 +252,10 @@ class Nosto_Tagging_Model_Meta_Order extends Mage_Core_Model_Abstract implements
     protected function buildItemProductId(Mage_Sales_Model_Order_Item $item)
     {
         $parent = $item->getProductOptionByCode('super_product_config');
-        if (isset($parent['product_id'])) {
-            return $parent['product_id'];
+        //if (isset($parent['product_id'])) {
+        //    return $parent['product_id'];
+        if (isset($parent['sku'])) {
+            return $parent['sku'];        
         } elseif ($item->getProductType() === Mage_Catalog_Model_Product_Type::TYPE_SIMPLE) {
             /** @var Mage_Catalog_Model_Product_Type_Configurable $model */
             $model = Mage::getModel('catalog/product_type_configurable');
@@ -263,10 +265,12 @@ class Nosto_Tagging_Model_Meta_Order extends Mage_Core_Model_Abstract implements
             // the parent. If there are many parent IDs, we are safer to tag the
             // products own ID.
             if (count($parentIds) === 1 && !empty($attributes)) {
-                return $parentIds[0];
+                $product = Mage::getModel('catalog/product')->load($parentIds[0]);
+                return $product->getSku();
+                //return $parentIds[0];
             }
         }
-        return $item->getProductId();
+        return $item->getProduct()->getSku();//...getProductId();
     }
 
     /**

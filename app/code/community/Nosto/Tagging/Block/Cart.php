@@ -83,7 +83,8 @@ class Nosto_Tagging_Block_Cart extends Mage_Checkout_Block_Cart_Abstract
     {
         $parentItem = $item->getOptionByCode('product_type');
         if (!is_null($parentItem)) {
-            return $parentItem->getProductId();
+            //...getProductId();
+            return $parentItem->getProduct()->getSku();
         } elseif ($item->getProductType() === Mage_Catalog_Model_Product_Type::TYPE_SIMPLE) {
             /** @var Mage_Catalog_Model_Product_Type_Configurable $model */
             $model = Mage::getModel('catalog/product_type_configurable');
@@ -93,10 +94,12 @@ class Nosto_Tagging_Block_Cart extends Mage_Checkout_Block_Cart_Abstract
             // the parent. If there are many parent IDs, we are safer to tag the
             // products own ID.
             if (count($parentIds) === 1 && !empty($attributes)) {
-                return $parentIds[0];
+                $product = Mage::getModel('catalog/product')->load($parentIds[0]);
+                return $product->getSku();
+                //return $parentIds[0];
             }
         }
-        return $item->getProductId();
+        return $item->getProduct()->getSku(); //...getProductId();
     }
 
     /**
