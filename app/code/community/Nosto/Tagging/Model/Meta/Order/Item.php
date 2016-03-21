@@ -71,10 +71,10 @@ class Nosto_Tagging_Model_Meta_Order_Item extends Mage_Core_Model_Abstract imple
      */
     public function __construct(array $args)
     {
-        if (!isset($args['productId']) || !is_int($args['productId'])) {
+        if (!isset($args['productId']) || empty($args['productId'])) {
             Mage::log(
                 sprintf(
-                    '%s.productId must be an integer value',
+                    '%s.productId must be a non-empty string value',
                     __CLASS__
                 ),
                 Zend_Log::WARN,

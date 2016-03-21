@@ -228,7 +228,7 @@ class Nosto_Tagging_Model_Meta_Order extends Mage_Core_Model_Abstract implements
         return Mage::getModel(
             'nosto_tagging/meta_order_item',
             array(
-                'productId' => (int)$this->buildItemProductId($item),
+                'productId' => $this->buildItemProductId($item),
                 'quantity' => (int)$item->getQtyOrdered(),
                 'name' => $this->buildItemName($item),
                 'unitPrice' => $nostoPriceHelper->getItemFinalPriceInclTax($item),
