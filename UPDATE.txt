@@ -1,0 +1,2 @@
+SKUs statt entity_id:
+https://github.com/Nosto/nosto-magento/wiki/Overriding-Product-Data
