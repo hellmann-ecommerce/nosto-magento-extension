@@ -135,6 +135,31 @@ Open Software License ("OSL") v3.0
 
 ## Changelog
 
+
+### 2.6.15
+* Add support for sending the account details & new platform UI
+* Add check if table `nosto_tagging_customer` already exists before creating it
+* Add visitor checksum tagging
+* Strip out _Main Website_ from the default account title
+* Disable tagging categories if there are hidden categories in the category path
+
+### 2.6.14
+* Support for SDK version headers
+
+### 2.6.13
+* Update modman settings
+* Bug fixes for multi currency handling
+
+### 2.6.12
+* Restore the type casting to quantity
+
+### 2.6.11
+* Hide hidden categories from tagging
+* Remove type casting from templates
+* Loosen up data validation for order items
+* Add search term tagging
+* Update products to Nosto regardless of the product visibility
+
 ### 2.6.10
 * Bug fixes
 

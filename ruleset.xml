@@ -24,16 +24,17 @@
   ~ @copyright Copyright (c) 2013-2016 Nosto Solutions Ltd (http://www.nosto.com)
   ~ @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
   -->
-<config>
-    <modules>
-        <Nosto_Tagging>
-            <active>true</active>
-            <codePool>community</codePool>
-            <depends>
-                <Mage_Core/>
-                <Mage_Catalog/>
-                <Mage_Sales/>
-            </depends>
-        </Nosto_Tagging>
-    </modules>
-</config>
+
+<!--suppress XmlUnboundNsPrefix -->
+<ruleset name="Magento">
+    <description>Magento coding standard.</description>
+    <rule ref="Ecg">
+        <exclude name="Ecg.Security.IncludeFile" />
+    </rule>
+    <exclude-pattern>*/lib/*</exclude-pattern>
+    <exclude-pattern>*/build/*</exclude-pattern>
+    <exclude-pattern>*.js</exclude-pattern>
+    <exclude-pattern>*.css</exclude-pattern>
+    <exclude-pattern>*.html</exclude-pattern>
+    <exclude-pattern>*.phtml</exclude-pattern>
+</ruleset>

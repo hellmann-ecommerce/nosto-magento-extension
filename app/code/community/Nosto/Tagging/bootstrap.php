@@ -25,21 +25,7 @@
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-/**
- * Product model that extends the Magento catalog product model.
- * Used to define custom product collection in product exports to Nosto.
- *
- * @category Nosto
- * @package  Nosto_Tagging
- * @author   Nosto Solutions Ltd <magento@nosto.com>
- */
-class Nosto_Tagging_Model_Product extends Mage_Catalog_Model_Product
-{
-    /**
-     * @inheritdoc
-     */
-    protected function _construct()
-    {
-        $this->_init('nosto_tagging/product');
-    }
-}
+require_once Mage::getBaseDir('lib') . '/nosto/php-sdk/src/config.inc.php';
+
+$version = (string)Mage::getConfig()->getNode('modules/Nosto_Tagging/version');
+NostoHttpRequest::buildUserAgent('Magento', Mage::getVersion(), $version);

@@ -26,38 +26,38 @@
  */
 
 /**
- * Extension system setting source model for choosing which image version is to
- * be tagged on the product page.
+ * Search term tagging block.
+ * Adds search term tag to the HTML document.
  *
  * @category Nosto
  * @package  Nosto_Tagging
  * @author   Nosto Solutions Ltd <magento@nosto.com>
  */
-class Nosto_Tagging_Model_System_Config_Source_Image
+class Nosto_Tagging_Block_Searchterm extends Mage_Core_Block_Template
 {
     /**
-     * Returns the image version options to choose from.
+     * Render shopping search term content
      *
-     * @return array the options.
+     * @return string
      */
-    public function toOptionArray()
+    protected function _toHtml()
     {
-        $options = array();
-
-        $entityTypeId = Mage::getSingleton('eav/config')
-            ->getEntityType(Mage_Catalog_Model_Product::ENTITY)
-            ->getId();
-        $collection = Mage::getResourceModel('catalog/product_attribute_collection');
-        $collection->setEntityTypeFilter($entityTypeId);
-        $collection->setFrontendInputTypeFilter('media_image');
-        foreach ($collection as $attribute) {
-            /* @var $attribute Mage_Eav_Model_Entity_Attribute */
-            $options[] = array(
-                'value' => $attribute->getAttributeCode(),
-                'label' => $attribute->getFrontend()->getLabel(),
-            );
+        if (!Mage::helper('nosto_tagging')->isModuleEnabled()
+            || !Mage::helper('nosto_tagging/account')->existsAndIsConnected()
+        ) {
+            return '';
         }
 
-        return $options;
+        return parent::_toHtml();
+    }
+
+    /**
+     * Returns the search term
+     *
+     * @return string
+     */
+    public function getSearchTerm()
+    {
+        return $this->helper('catalogsearch')->getQueryText();
     }
 }
