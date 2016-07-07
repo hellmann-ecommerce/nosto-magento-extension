@@ -190,8 +190,7 @@ class NostoOperationProduct
     protected function getProductAsArray(NostoProductInterface $product)
     {
         $data = array(
-            'product_id' => $product->getSku(), //...getProductId()
-            'product_id' => $product->getProductId(),
+            'product_id' => $product->getSku(), // HEC: was getProductId()
             'name' => $product->getName(),
             'image_url' => $product->getImageUrl(),
             'price' => Nosto::helper('price')->format($product->getPrice()),
